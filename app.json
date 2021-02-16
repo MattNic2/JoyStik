@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This is the test project to use for EGR302 'Joystick' project"
   }
 }
