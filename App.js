@@ -6,6 +6,14 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Hello World! Welcome to Joystik</Text>
+      <Text>Please set up your profile!</Text>
+      <Text>First Name: </Text>
+      <Text>Last Name: </Text>
+      <Text>Date of Birth: </Text>
+      <Text>Gender: </Text>
+      <Text>Street Address: </Text>
+      <Text>City:</Text>
+      <Text>Zip code:</Text>
       <StatusBar style="auto" />
     </View>
   );
