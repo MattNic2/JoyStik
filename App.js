@@ -1,96 +1,59 @@
-// import { StatusBar } from 'expo-status-bar';
-// import React from 'react';
-// import { StyleSheet, Text, View, TouchableOpacity, TextInput, } from 'react-native';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Hello World! Welcome to Joystik</Text>
-//       <Text>Please set up your profile!</Text>
-//       <Text>First Name: </Text>
-//       <Text>Last Name: </Text>
-//       <Text>Date of Birth: </Text>
-//       <Text>Gender: </Text>
-//       <Text>Street Address: </Text>
-//       <Text>City:</Text>
-//       <Text>Zip code:</Text>
-//     </View>
-//   );
-// }
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View, Alert} from 'react-native';
+import Constants from 'expo-constants';
+import TopBar from './components/TopBar';
+import axios from 'axios'
+import SwipeableImage from './components/SwipeableImage'
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
-class Inputs extends Component {
-   state = {
-      email: '',
-      password: ''
+export default function App() {
+
+   const [users, setUsers] = useState([])
+   const [currentIndex, setCurrentIndex] = useState(0)
+
+   async function fetchUsers() {
+         try {
+            const {data} = await axios.get('https://randomuser.me/api/?results=300')
+            setUsers(data.results)
+         }  catch (error) {
+            console.log
+            Alert.alert('Error getting users', '', [{text: 'Retry', onPress: () => fetchUsers()}])
+      }
    }
-   handleEmail = (text) => {
-      this.setState({ email: text })
-   }
-   handlePassword = (text) => {
-      this.setState({ password: text })
-   }
-   login = (email, pass) => {
-      alert('email: ' + email + ' password: ' + pass)
-   }
-   render() {
-      return (
-         <View style = {styles.container}>
-           <Text>Hello World! Welcome to Joystik</Text>
-            <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Email"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
-               onChangeText = {this.handleEmail}/>
-            
-            <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Password"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
-               onChangeText = {this.handlePassword}/>
-            
-            <TouchableOpacity
-               style = {styles.submitButton}
-               onPress = {
-                  () => this.login(this.state.email, this.state.password)
-               }>
-               <Text style = {styles.submitButtonText}> Submit </Text>
-            </TouchableOpacity>
+
+   useEffect(() => {
+      fetchUsers()
+   }, [])
+
+   return (
+     <View style={styles.container}>
+        <TopBar />
+         <View style = {styles.swipes}>
+            {users.length > 1 && (
+            <SwipeableImage user={users[currentIndex]}/>
+            )}
          </View>
-      )
-   }
-}
-export default Inputs
+     </View>
+   );
+ }
 
-const styles = StyleSheet.create({
+ const styles = StyleSheet.create({
    container: {
-      paddingTop: 23
+     flex: 1,
+     marginTop: Constants.statusBarHeight,
    },
-   input: {
-      margin: 15,
-      height: 40,
-      borderColor: '#7a42f4',
-      borderWidth: 1
-   },
-   submitButton: {
-      backgroundColor: '#7a42f4',
+   swipes: {
+      flex: 1,
       padding: 10,
-      margin: 15,
-      height: 40,
+      paddingTop: 8,
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 3,
+      },
+      shadowOpacity: 0.29,
+      shadowRadius: 4.65,
+      elevation: 7,
    },
-   submitButtonText:{
-      color: 'white'
-   }
-})
+ });
