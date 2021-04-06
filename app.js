@@ -8,6 +8,7 @@ var indexRouter = require('./routes');
 var usersRouter = require('./routes/users');
 coverInfoRouter= require("./routes/coverInfo");
 gameInfoRouter = require("./routes/gameInfo");
+userDBRouter = require("./routes/userDB");
 var app = express();
 
 // view engine setup
@@ -25,6 +26,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/coverInfo", coverInfoRouter);
 app.use("/gameInfo", gameInfoRouter);
+app.use("/userDB", userDBRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
