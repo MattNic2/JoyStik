@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { StyleSheet, View, Alert} from 'react-native';
 import Constants from 'expo-constants';
 import TopBar from './components/TopBar';
@@ -7,54 +7,74 @@ import axios from 'axios'
 import SwipeableImage from './components/SwipeableImage'
 import BottomBar from './components/BottomBar'
 import Swipes from './components/Swipes'
+import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+
 
 export default function App() {
 
-   const [users, setUsers] = useState([])
+   const [games, setGames] = useState([])
    const [currentIndex, setCurrentIndex] = useState(0)
+   const swipesRef = useRef(null)
 
-   async function fetchUsers() {
+   async function fetchGames() {
          try {
-            const {data} = await axios.get('https://randomuser.me/api/?results=300')
-            setUsers(data.results)
+            const {data} = await axios.get('http://10.0.2.2:9000/coverInfo')
+            setGames(data)
          }  catch (error) {
-            console.log
-            Alert.alert('Error getting users', '', [{text: 'Retry', onPress: () => fetchUsers()}])
+            console.log("error", error)
+            Alert.alert('Error getting users', '', [{text: 'Retry', onPress: () => fetchGames()}])
       }
    }
 
    useEffect(() => {
-      fetchUsers()
+      fetchGames()
    }, [])
 
    function handleLike() {
       console.log('like')
-      nextUser()
+      nextGame()
    }
 
    function handlePass() {
       console.log('pass')
-      nextUser()
+      nextGame()
    }
 
-   function nextUser() {
-      const nextIndex = users.length - 2 == currentIndex ? 0 : currentIndex + 1
+   function nextGame() {
+      const nextIndex = games.length - 2 == currentIndex ? 0 : currentIndex + 1
       setCurrentIndex(nextIndex)
    }
 
+   function handleLikePress() {
+      swipesRef.current.openLeft()
+   }
+
+   function handlePassPress(){
+      swipesRef.current.openRight()
+   }
+
+   //console.log("games", games)
    return (
      <View style={styles.container}>
         <TopBar />
          <View style = {styles.swipes}>
-            {users.length > 1 &&
-               users.map(
+            {games?.length > 1 &&
+               games.map(
                   (u, i) =>
                   currentIndex == i && (
-                  <Swipes key = {i} currentIndex={currentIndex} users={users} handleLike={handleLike} handlePass={handlePass}></Swipes>
+                  <Swipes 
+                     key = {i} 
+                     ref={swipesRef} 
+                     currentIndex={currentIndex} 
+                     games={games} 
+                     handleLike={handleLike} 
+                     handlePass={handlePass}
+                  ></Swipes>
                   )
                )}
          </View>
-         <BottomBar />
+         <BottomBar handlePassPress={handlePassPress} handleLikePress={handleLikePress}/>
      </View>
    );
  }

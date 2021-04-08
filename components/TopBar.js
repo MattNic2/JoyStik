@@ -5,16 +5,17 @@ import { FontAwesome5, FontAwesome } from '@expo/vector-icons'
 export default function TopBar() {
     return (
         <View style = {styles.container}>
-            <FontAwesome5 name ="fire" size ={35} color ="#F06795" />
-            <FontAwesome name ="gamepad" size ={35} color ="#F06795" />
-            <FontAwesome name ="cog" size ={35} color ="#F06795" />
+            
+            <FontAwesome5 name ="fire" size ={20} color ="#F06795" />
+            <FontAwesome name ="gamepad" size ={20} color ="#F06795" />
+            <FontAwesome name ="cog" size = {20} color ="#F06795" />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: 70,
+        height: 50,
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 15,
