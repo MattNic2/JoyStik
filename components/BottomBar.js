@@ -1,8 +1,9 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import {FontAwesome} from '@expo/vector-icons'
+import { NavigationEvents, StackNavigator } from 'react-navigation';
 
-export default function BottomBar({handleLikePress, handlePassPress}) {
+export default function BottomBar({handleLikePress, handlePassPress, handleLibraryPress}) {
     return (
         <View style ={styles.container}>
             <View />
@@ -11,6 +12,9 @@ export default function BottomBar({handleLikePress, handlePassPress}) {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
                     <FontAwesome name ="heart" size={27} color="#F06795" onPress={handleLikePress}></FontAwesome>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
+                    <FontAwesome name ="book" size={27} color="#F06795" onPress={handleLibraryPress}></FontAwesome>
                 </TouchableOpacity>
             <View />
         </View>
