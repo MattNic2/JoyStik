@@ -54,11 +54,17 @@ export default function HomeScreen({navigation}) {
       navigation.navigate('Library');
 
    }
+   function handleProfilePress() {
+      navigation.navigate('Profile');
+   }
+   function handleHomePress() {
+      navigation.navigate('Home')
+   }
 
    //console.log("games", games)
    return (
       <View style={styles.container}>
-      <TopBar />
+      <TopBar handleProfilePress = {handleProfilePress} handleHomePress={handleHomePress} />
        <View style = {styles.swipes}>
           {games?.length > 1 &&
              games.map(

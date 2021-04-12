@@ -1,14 +1,21 @@
 import React from 'react'
 import {View, Text, StyleSheet } from 'react-native'
 import { FontAwesome5, FontAwesome } from '@expo/vector-icons'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function TopBar() {
+export default function TopBar( {handleProfilePress, handleHomePress} ) {
     return (
         <View style = {styles.container}>
             
-            <FontAwesome5 name ="fire" size ={20} color ="#F06795" />
-            <FontAwesome name ="gamepad" size ={20} color ="#F06795" />
-            <FontAwesome name ="cog" size = {20} color ="#F06795" />
+            <TouchableOpacity>
+                <FontAwesome name ="fire" size ={20} color ="#F06795" onPress={handleHomePress} />
+            </TouchableOpacity>
+
+                <FontAwesome name ="gamepad" size ={20} color ="#F06795" />
+
+            <TouchableOpacity>
+                <FontAwesome name ="user" size = {20} color ="#F06795" onPress={handleProfilePress} />
+            </TouchableOpacity>
         </View>
     )
 }
