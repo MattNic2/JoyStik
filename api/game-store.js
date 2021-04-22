@@ -24,7 +24,7 @@ async function retrieveJSONObjects(){
         likedGamesText,
         dislikedGameText
     ] = await Promise.all([
-         AsyncStorage.clear(),
+         //AsyncStorage.clear(),
          AsyncStorage.getItem(LIKED_GAMES_KEY),
          AsyncStorage.getItem(DISLIKED_GAMES_KEY)
     ])

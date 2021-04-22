@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import TopBar from '../../components/TopBar';
 import { withOrientation } from 'react-navigation';
+import { theme } from '../Login/Theme';
 
 export default function ProfileScreen({navigation}) { 
 
@@ -15,6 +16,7 @@ export default function ProfileScreen({navigation}) {
      }
 
     return (
+        
         <View>
 
         <View style = {styles.topBar}>
@@ -26,15 +28,15 @@ export default function ProfileScreen({navigation}) {
         <Image source = {require ('../../images/Userpro.jpg')}
         style = {{width: 130, height: 150}}/>
 
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}About:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}About: John Doe</Text>
 
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Location:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Location: Riverside, California</Text>
         
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Username:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Username: John49</Text>
         
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Liked:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Liked: 4</Text>
         
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Swiped:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Swiped: 7</Text>
         </View>
     </View>
     )
@@ -45,7 +47,7 @@ export default function ProfileScreen({navigation}) {
 const styles = StyleSheet.create({
     container: {
        height: '100%',
-       backgroundColor:'#708090',
+       backgroundColor: theme.colors.surface,
        alignItems:'center',
        fontSize: 32, 
        paddingTop: 90,
@@ -60,5 +62,9 @@ const styles = StyleSheet.create({
     topBar: {
         flex: 1,
         marginTop: Constants.statusBarHeight,
+    },
+
+    textPrimary: {
+        color: '#ffff',
     }
  })
