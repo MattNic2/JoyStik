@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { theme } from './Theme';
+import Constants from 'expo-constants';
 
 export default function Background({ children }) {
   return (
