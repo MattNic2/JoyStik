@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';  
 import Constants from 'expo-constants';
 import TopBar from '../../components/TopBar';
+import { withOrientation } from 'react-navigation';
 
 export default function ProfileScreen({navigation}) { 
 
@@ -25,11 +26,11 @@ export default function ProfileScreen({navigation}) {
         <Image source = {require ('../../images/Userpro.jpg')}
         style = {{width: 130, height: 150}}/>
 
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Following:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}About:</Text>
 
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Followers:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Location:</Text>
         
-        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Comments:</Text>
+        <Text style= {styles.textPrimary}>{'\n'}{'\n'}Username:</Text>
         
         <Text style= {styles.textPrimary}>{'\n'}{'\n'}Liked:</Text>
         
@@ -43,8 +44,8 @@ export default function ProfileScreen({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        height: '100%',
-       backgroundColor:'gray',
+       height: '100%',
+       backgroundColor:'#708090',
        alignItems:'center',
        fontSize: 32, 
        paddingTop: 90,

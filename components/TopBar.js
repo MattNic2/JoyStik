@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet } from 'react-native'
+import {View, Text, StyleSheet, Image } from 'react-native'
 import { FontAwesome5, FontAwesome } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
@@ -11,7 +11,8 @@ export default function TopBar( {handleProfilePress, handleHomePress} ) {
                 <FontAwesome name ="fire" size ={20} color ="#F06795" onPress={handleHomePress} />
             </TouchableOpacity>
 
-                <FontAwesome name ="gamepad" size ={20} color ="#F06795" />
+                {/* <FontAwesome name ="gamepad" size ={20} color ="#F06795" /> */}
+                <Image source = {require ('../images/JoyStikLogo.jpg')}style = {{ flexDirection: 'row', width: 60, height: 30, justifyContent: 'space-around'}}/>
 
             <TouchableOpacity>
                 <FontAwesome name ="user" size = {20} color ="#F06795" onPress={handleProfilePress} />

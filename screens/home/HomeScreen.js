@@ -7,6 +7,14 @@ import SwipeableImage from '../../components/SwipeableImage'
 import BottomBar from '../../components/BottomBar'
 import Swipes from '../../components/Swipes';
 
+import {
+   hasGameAlreadyBeenHandled,
+   addToLikedGames,
+   addToDislikedGames,
+   retrieveLikedGames,
+   retrieveDislikedGames  
+} from "../../api/game-store";
+
 export default function HomeScreen({navigation}) {
 
    const [games, setGames] = useState([])
@@ -15,7 +23,8 @@ export default function HomeScreen({navigation}) {
 
    async function fetchGames() {
          try {
-            const { data } = await axios.get('http://10.0.2.2:9000/coverInfo')
+            const { data } = await axios.get('http://10.0.2.2:9000/gameInfo')
+            console.log(data)
             setGames(data)
           //  alert(JSON.stringify(data))
          }  catch (error) {
@@ -28,13 +37,15 @@ export default function HomeScreen({navigation}) {
       fetchGames()
    }, [])
 
-   function handleLike() {
+   function handleLike(game) {
       console.log('like')
+      addToLikedGames(game)
       nextGame()
    }
 
-   function handlePass() {
+   function handlePass(game) {
       console.log('pass')
+      addToDislikedGames(game);   
       nextGame()
    }
 

@@ -34,11 +34,11 @@ const renderRightActions = () =>{
             renderRightActions ={renderRightActions}
             onSwipeableLeftOpen={() => {
                 setWillLike(false)
-                handleLike()
+                handleLike(games[currentIndex])
             }}
             onSwipeableRightOpen={() => {
                 setWillPass(false)
-                handlePass()
+                handlePass(games[currentIndex])
             }}
             onSwipeableLeftWillOpen={() => setWillLike(true)}
             onSwipeableRightWillOpen={() => setWillLike(true)}
