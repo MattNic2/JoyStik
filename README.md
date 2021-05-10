@@ -11,7 +11,16 @@ receives the JSON information from the server, the covers are displayed for user
 A user is able to swipe through videogame covers on the main screen, and they will be added to either their "liked" or "disliked" libraries. Likes and dislikes
 are stored through async storage on the client side. For further scaling, the server will connect to a database and store information there. 
 
-======================= Directions ===============================
+================================= Directions ==========================================
 
-The project is split up between the actual application and the server. The actual application is under the "main" branch, and the server is under the "server" branch.
+The project is split up between the actual application and the server. The actual application is under the "goodTimes" branch, and the server is under the "FinalServer" branch.
 Open the files from these branches in seperate projects on your IDE of choice.
+
+First startup your emulator and make sure it is running expo. Next start the server by running the following commands in your IDE terminal:
+
+**npm run dev**
+
+Next, navigate to the project containing the main app and run the following commands in the terminal:
+
+**expo start**          followed by 
+**a**
